@@ -1,0 +1,23 @@
+<div [ngClass]="alert" role="alert">
+    A simple primary alert—check it out!
+</div>
+<button type="button" class="btn btn-info" (click)="alert = 'alert alert-info'">
+    Info
+</button>
+<button type="button" class="btn btn-success" (click)="alert = 'alert alert-success'">
+    Success
+</button>
+<button type="button" class="btn btn-danger" (click)="alert = 'alert alert-danger'">
+    Danger
+</button>
+<hr>
+<h3 [ngClass]="{'text-danger': ngClassConditions.danger, 'text-info': !ngClassConditions.danger}">
+    Hello world
+</h3>
+<button type="button" class="btn" (click)="ngClassConditions.danger = !ngClassConditions.danger" [ngClass]="{'btn-danger': ngClassConditions.danger, 'btn-info': !ngClassConditions.danger}">
+    Cambiar
+</button>
+<hr>
+<button type="button" name="button" class="btn btn-primary" (click)="execute()" [disabled]="saving">
+    <i [ngClass]="{'fa-save':!saving, 'fa-refresh fa-spin':saving}" class="fa"></i> {{ savingText }}
+</button>
