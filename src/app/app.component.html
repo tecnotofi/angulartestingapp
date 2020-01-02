@@ -1,5 +1,18 @@
-<ejs-grid #grid [dataSource]='pData' [childGrid]='childGrid' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions'
-    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)'>
+<ejs-grid #grid
+    [dataSource]='pData'
+    [childGrid]='childGrid'
+    [showColumnChooser]="true"
+    [allowSorting]="true"
+    [allowPaging]="true"
+    [allowResizing]="true"
+    [allowReordering]='true'
+    [allowFiltering]="true"
+    [allowGrouping]="true" 
+    [filterSettings]='filterOptions'
+    [toolbar]='toolbarOptions' 
+    [editSettings]='editSettings' 
+    (dataBound)='dataBound()' 
+    (actionBegin)='actionBegin($event)'>
     <e-columns>
         <!-- <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90 isPrimaryKey='true'></e-column>
         <e-column field='CustomerID' headerText='Customer ID' width=120 showInColumnChooser='false' editType= 'dropdownedit' [edit]='ddParams'></e-column>
@@ -7,9 +20,17 @@
         <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120 editType= 'datepickeredit' [edit]='dpParams'></e-column>
         <e-column field='ShipPostalCode' headerText='Ship Postal Code' textAlign='Right' width=120 [visible]='testOcultar'></e-column>
         <e-column field='Verified' headerText='Verified' [displayAsCheckBox]="true" width=150 editType= 'booleanedit' [edit]='boolParams'></e-column> -->
-        <e-column field='EmployeeID' headerText='Employee ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
+        <!-- <e-column field='EmployeeID' headerText='Employee ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
         <e-column field='FirstName' headerText='FirstName' width=150></e-column>
         <e-column field='LastName' headerText='Last Name' width=150></e-column>
-        <e-column field='City' headerText='City' width=150 editType='dropdownedit'></e-column>
+        <e-column field='City' headerText='City' width=150 editType='dropdownedit'></e-column> -->
+        <e-column field='USER_ID' headerText='User ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
+        <e-column field='USER_NAME' headerText='Name' width=150></e-column>
+        <e-column field='USER_REAL_NAME' headerText='Real Name' width=150></e-column>
+        <e-column field='PROF_ID' headerText='Profile ID' width=150 editType='dropdownedit'></e-column>
+        <e-column field='USER_EMAIL' headerText='Email' width=150></e-column>
+        <e-column field='VendorId' headerText='Vendor Id' width=150 editType='dropdownedit'></e-column>
+        <e-column field='LastModificationDate' headerText='Last Modification Date' format='yMd' width=120></e-column>
+        <e-column field='LastModificationBy' headerText='Last Modification By' width=150 editType='dropdownedit'></e-column>
     </e-columns>
 </ejs-grid>
