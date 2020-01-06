@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { GridComponent, DetailRowService, GridModel, FilterSettingsModel, ToolbarItems, EditSettingsModel, IEditCell, SaveEventArgs, ForeignKeyService } from '@syncfusion/ej2-angular-grids';
+import { Component, OnInit, ViewChild, OnChanges, Input, SimpleChanges, SimpleChange, Inject } from '@angular/core';
+import { GridComponent, DetailRowService, GridModel, FilterSettingsModel, ToolbarItems, EditSettingsModel, IEditCell, SaveEventArgs, ForeignKeyService, SelectionService, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
 import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 // import { data, dataDos, employeeData } from './datasource';
 import { arauserData, accessByRegionData, accessByZoneData, araProfileData, regionData, zoneData } from './datasourceBio';
@@ -7,7 +7,7 @@ import { arauserData, accessByRegionData, accessByZoneData, araProfileData, regi
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
-    providers: [DetailRowService, ForeignKeyService]
+    providers: [DetailRowService, ForeignKeyService, SelectionService]
 })
 export class AppComponent implements OnInit {
 
@@ -26,7 +26,17 @@ export class AppComponent implements OnInit {
   public testOcultar = false;
   public accessByRegionGrid: any;
 
-  public headerText: Object = [{ 'text': 'Acce4ss by region' }, { 'text': 'Acce4ss by zone' }];
+  public data: Object[];
+  public key: string = null;
+  
+  public onRowSelected(args: RowSelectEventArgs): void {
+    // let record: carType = <carType>args.data;
+    this.key = args.data['USER_ID'];
+    
+    this.childGridData = accessByRegionData.filter((data: any) => data.UserId === this.key)
+  }
+
+//   public headerText: Object = [{ 'text': 'Acce4ss by region' }, { 'text': 'Acce4ss by zone' }];
 
     //    public content0: string = 'Twitter is an online social networking service that enables users to send and read short 140-character ' +
     //         'messages called "tweets". Registered users can read and post tweets, but those who are unregistered can only read ' +
@@ -54,7 +64,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.parentGridData = arauserData;
-    this.childGridData = accessByRegionData;
+    this.childGridData = [];
     this.araProfileSource = araProfileData;
     this.regionSource = regionData;
     this.zoneSource = zoneData;
@@ -63,34 +73,34 @@ export class AppComponent implements OnInit {
     this.toolbarOptions = ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Search', 'ColumnChooser'];
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal', showDeleteConfirmDialog: true }; // Normal - Dialog - Batch
 
-    this.accessByRegionGrid = {
-      dataSource: accessByRegionData,
-      queryString: 'UserId',
-      allowFiltering: true,
-      allowGrouping: true,
-      allowSorting: true,
-      allowPaging: true,
-      allowResizing: true,
-      allowReordering: true,
-      showColumnChooser: true,
-      filterSettings: { type: 'Excel'},
-      toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Search', 'ColumnChooser'],
-      editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal', showDeleteConfirmDialog: true },
-      columns: [
-          { field: 'AccessByRegionId', headerText: 'Access By Region ID', textAlign: 'Right', width: 120, isPrimaryKey: true },
-          { field: 'UserId', headerText: 'User ID', width: 150 },
-          { field: 'RegionId', headerText: 'Region ID', width: 150},
-          { field: 'RegionId', headerText: 'Region', width: 150,  dataSource: regionData, foreignKeyValue: 'Name'},
-          { field: 'CanViewData', headerText: 'Can View Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true },
-          { field: 'CanInsertData', headerText: 'Can Insert Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true },
-          { field: 'CanEditData', headerText: 'Can Edit Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true },
-          { field: 'CanDeleteData', headerText: 'Can Delete Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true }
-      ],
-      load() {
-        const ForeignUserId = 'USER_ID';
-        this.parentDetails.parentKeyFieldValue = this.parentDetails.parentRowData[ForeignUserId];
-      }
-    };
+    // this.accessByRegionGrid = {
+    //   dataSource: accessByRegionData,
+    //   queryString: 'UserId',
+    //   allowFiltering: true,
+    //   allowGrouping: true,
+    //   allowSorting: true,
+    //   allowPaging: true,
+    //   allowResizing: true,
+    //   allowReordering: true,
+    //   showColumnChooser: true,
+    //   filterSettings: { type: 'Excel'},
+    //   toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Search', 'ColumnChooser'],
+    //   editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal', showDeleteConfirmDialog: true },
+    //   columns: [
+    //       { field: 'AccessByRegionId', headerText: 'Access By Region ID', textAlign: 'Right', width: 120, isPrimaryKey: true },
+    //       { field: 'UserId', headerText: 'User ID', width: 150 },
+    //       { field: 'RegionId', headerText: 'Region ID', width: 150},
+    //       { field: 'RegionId', headerText: 'Region', width: 150,  dataSource: regionData, foreignKeyValue: 'Name'},
+    //       { field: 'CanViewData', headerText: 'Can View Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true },
+    //       { field: 'CanInsertData', headerText: 'Can Insert Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true },
+    //       { field: 'CanEditData', headerText: 'Can Edit Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true },
+    //       { field: 'CanDeleteData', headerText: 'Can Delete Data', width: 150, editType: 'booleanedit', displayAsCheckBox: true }
+    //   ],
+    //   load() {
+    //     const ForeignUserId = 'USER_ID';
+    //     this.parentDetails.parentKeyFieldValue = this.parentDetails.parentRowData[ForeignUserId];
+    //   }
+    // };
   }
 
   actionBegin(args: SaveEventArgs) {
