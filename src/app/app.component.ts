@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnChanges, Input, SimpleChanges, SimpleChange, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, Input, SimpleChanges, SimpleChange, Inject, ViewEncapsulation } from '@angular/core';
 import { GridComponent, DetailRowService, GridModel, FilterSettingsModel, ToolbarItems, EditSettingsModel, IEditCell, SaveEventArgs, ForeignKeyService, SelectionService, RowSelectEventArgs } from '@syncfusion/ej2-angular-grids';
 import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 // import { data, dataDos, employeeData } from './datasource';
@@ -7,12 +7,14 @@ import { arauserData, accessByRegionData, accessByZoneData, araProfileData, regi
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
-    providers: [DetailRowService, ForeignKeyService, SelectionService]
+    providers: [DetailRowService, ForeignKeyService, SelectionService],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
 
   public parentGridData: object[];
   public childGridData: object[];
+  public childGridDataDos: object[];
   public araProfileSource: object[];
   public regionSource: object[];
   public zoneSource: object[];
@@ -34,29 +36,10 @@ export class AppComponent implements OnInit {
     this.key = args.data['USER_ID'];
     
     this.childGridData = accessByRegionData.filter((data: any) => data.UserId === this.key)
+    this.childGridDataDos = accessByZoneData.filter((data: any) => data.UserId === this.key)
   }
 
-//   public headerText: Object = [{ 'text': 'Acce4ss by region' }, { 'text': 'Acce4ss by zone' }];
-
-    //    public content0: string = 'Twitter is an online social networking service that enables users to send and read short 140-character ' +
-    //         'messages called "tweets". Registered users can read and post tweets, but those who are unregistered can only read ' +
-    //         'them. Users access Twitter through the website interface, SMS or mobile device app Twitter Inc. is based in San ' +
-    //         'Francisco and has more than 25 offices around the world. Twitter was created in March 2006 by Jack Dorsey, ' +
-    //         'Evan Williams, Biz Stone, and Noah Glass and launched in July 2006. The service rapidly gained worldwide popularity, ' +
-    //         'with more than 100 million users posting 340 million tweets a day in 2012.The service also handled 1.6 billion ' +
-    //         'search queries per day.';
-
-    // public content1: string = 'Facebook is an online social networking service headquartered in Menlo Park, California. Its website was ' +
-    //         'launched on February 4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo ' +
-    //         'Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes.The founders had initially limited the website\'\s ' +
-    //         'membership to Harvard students, but later expanded it to colleges in the Boston area, the Ivy League, and Stanford ' +
-    //         'University. It gradually added support for students at various other universities and later to high-school students.';
-
-    // public content2: string = 'WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates ' +
-    //         'under a subscription business model. It uses the Internet to send text messages, images, video, user location and ' +
-    //         'audio media messages to other users using standard cellular mobile numbers. As of February 2016, WhatsApp had a user ' +
-    //         'base of up to one billion,[10] making it the most globally popular messaging application. WhatsApp Inc., based in ' +
-    //         'Mountain View, California, was acquired by Facebook Inc. on February 19, 2014, for approximately US$19.3 billion.';
+  public headerText: Object = [{ 'text': 'Access by region' }, { 'text': 'Access by zone' }];
 
   dataBound() {
     Object.assign((this.grid.filterModule as any).filterOperators, { startsWith: 'contains' });
@@ -65,6 +48,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.parentGridData = arauserData;
     this.childGridData = [];
+    this.childGridDataDos = [];
     this.araProfileSource = araProfileData;
     this.regionSource = regionData;
     this.zoneSource = zoneData;
