@@ -1,18 +1,22 @@
-<ejs-grid #grid
-    [dataSource]='pData'
-    [childGrid]='childGrid'
-    [showColumnChooser]="true"
-    [allowSorting]="true"
-    [allowPaging]="true"
-    [allowResizing]="true"
-    [allowReordering]='true'
-    [allowFiltering]="true"
-    [allowGrouping]="true" 
-    [filterSettings]='filterOptions'
-    [toolbar]='toolbarOptions' 
-    [editSettings]='editSettings' 
-    (dataBound)='dataBound()' 
-    (actionBegin)='actionBegin($event)'>
+<ejs-grid #grid [dataSource]='parentGridData' [childGrid]='accessByRegionGrid' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions'
+    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)'>
+    <ng-template #detailTemplate let-data>
+        <ejs-tab id="element">
+            <e-tabitems>
+            <e-tabitem [header]='headerText[0]'>
+                <ng-template #content>
+                <ejs-grid [dataSource]='accessByRegionGrid.dataSource' [queryString]='accessByRegionGrid.queryString' (load)='accessByRegionGrid.load()'>
+                        <!-- <e-columns>
+                            <e-column field='AccessByRegionId' headerText='Access By Region ID' textAlign='Right' width=120 isPrimaryKey='true' queryString= "UserId"></e-column>
+                        </e-columns> -->
+                    </ejs-grid>
+                </ng-template>
+            </e-tabitem>
+                <e-tabitem [header]='headerText[1]'></e-tabitem>
+                <e-tabitem [header]='headerText[2]'></e-tabitem>
+            </e-tabitems>
+        </ejs-tab>
+    </ng-template>
     <e-columns>
         <!-- <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90 isPrimaryKey='true'></e-column>
         <e-column field='CustomerID' headerText='Customer ID' width=120 showInColumnChooser='false' editType= 'dropdownedit' [edit]='ddParams'></e-column>
@@ -28,9 +32,151 @@
         <e-column field='USER_NAME' headerText='Name' width=150></e-column>
         <e-column field='USER_REAL_NAME' headerText='Real Name' width=150></e-column>
         <e-column field='PROF_ID' headerText='Profile ID' width=150 editType='dropdownedit'></e-column>
+        <e-column field='PROF_ID' headerText='Profile' width=150 editType='dropdownedit' [dataSource]='araProfileSource' foreignKeyValue='PROF_DESCRIPTION'></e-column>
         <e-column field='USER_EMAIL' headerText='Email' width=150></e-column>
         <e-column field='VendorId' headerText='Vendor Id' width=150 editType='dropdownedit'></e-column>
         <e-column field='LastModificationDate' headerText='Last Modification Date' format='yMd' width=120></e-column>
         <e-column field='LastModificationBy' headerText='Last Modification By' width=150 editType='dropdownedit'></e-column>
     </e-columns>
+    <!-- { field: 'AccessByRegionId', headerText: 'Access By Region ID', textAlign: 'Right', width: 120, isPrimaryKey: true },
+    { field: 'UserId', headerText: 'User ID', width: 150 }, -->
+    <!-- <ng-template #rowTemplate let-data>
+        <ejs-tab id="element">
+            <e-tabitems>
+                <e-tabitem>
+                    <ng-template #headerText>
+                        <div>Access by Region</div>
+                    </ng-template>
+                    <ng-template #content>
+                        {{accessByRegionGrid}}
+                    </ng-template>
+                </e-tabitem>
+                <e-tabitem>
+                    <ng-template #headerText>
+                        <div>Access by Zone</div>
+                    </ng-template>
+                    <ng-template #content>
+                        asd
+                    </ng-template>
+                </e-tabitem>
+            </e-tabitems>
+        </ejs-tab>
+        <tr>
+            <td class="row">
+                {{data.USER_ID}}
+            </td>
+            <td class="row">
+                {{data.USER_NAME}}
+            </td>
+            <td class="row">
+                {{data.USER_REAL_NAME}}
+            </td>
+        </tr> -->
+    <!--
+        <tr>
+            <td>
+                {{data.USER_ID}}
+            </td>
+        </tr>
+        
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tabAccessByRegion">Access By Region</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tabAccessByZone">Access By Zone</a>
+                        </li>
+                    </ul>
+                    <div id="tab-content" class="tab-content">
+                        <div id="tabAccessByRegion" class="tab-pane fade in active">
+                            <div class="row">
+                                <div class="accessByRegion"></div>
+                            </div>
+                        </div>
+                        <div id="tabAccessByZone" class="tab-pane fade">
+                            <div class="row">
+                                <div class="accessByZone"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    <!-- </ng-template> -->
 </ejs-grid>
+<!-- <ejs-tab id="element">
+    <e-tabitems>
+        <e-tabitem>
+            <ng-template #headerText>
+                <div>Access by Region</div>
+            </ng-template>
+            <ng-template #content>
+                {{accessByRegionGrid}}
+            </ng-template>
+        </e-tabitem>
+        <e-tabitem>
+            <ng-template #headerText>
+                <div>Access by Zone</div>
+            </ng-template>
+            <ng-template #content>
+                asd
+            </ng-template>
+        </e-tabitem>
+    </e-tabitems>
+</ejs-tab> -->
+
+<!-- <script type="text/x-template" id="detailtemplate"> -->
+<!-- <div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+
+
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#tabAccessByRegion">Access By Region</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#tabAccessByZone">Access By Zone</a>
+                </li>
+            </ul>
+
+
+
+            <div id="tab-content" class="tab-content">
+                <div id="tabAccessByRegion" class="tab-pane fade in active">
+                    <div class="row">
+                        <div class="accessByRegion"></div>
+                    </div>
+                </div>
+                <div id="tabAccessByZone" class="tab-pane fade">
+                    <div class="row">
+                        <div class="accessByZone"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div> -->
+<!-- </script> -->
+<!-- <script id="tabGridContents" type="text/x-jsrender"> -->
+<!-- <div class="tabcontrol" id="Test">
+        <ul>
+            <li><a href="#detailChart{{:EmployeeID}}">Stock Chart</a></li>
+            <li><a href="#gridTab{{:EmployeeID}}">Stock Grid</a></li>
+        </ul>
+        <div id="detailChart{{:EmployeeID}}">
+        </div>
+        <div id="gridTab{{:EmployeeID}}">
+            <div id="detailGrid">
+            </div>
+        </div>
+        
+    </div> -->
+<!-- </script> -->
