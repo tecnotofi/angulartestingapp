@@ -19,14 +19,14 @@
         <e-tabitem [header]='headerText[0]'>
             <ng-template #content>
                 <ejs-grid #childGrid [dataSource]='childGridData' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions'
-                    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)' (rowSelected)="onRowSelected($event)">
+                    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)'>
                 </ejs-grid>
             </ng-template>
         </e-tabitem>
         <e-tabitem [header]='headerText[1]'>
             <ng-template #content>
                 <ejs-grid #childGrid [dataSource]='childGridDataDos' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions'
-                    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)' (rowSelected)="onRowSelected($event)">
+                    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)'>
                 </ejs-grid>
             </ng-template>
         </e-tabitem>
