@@ -1,37 +1,40 @@
 <h4>Formularios <small>data</small></h4>
 <hr>
-<form>
-
-    <div>
-
+<form [formGroup]="forma" (ngSubmit)="save()" novalidate="novalidate">
+    <div formGroupName="nombreCompleto">
+        <!--  [ngClass]="{'has-danger': !forma.get('nombre').valid}" -->
         <div class="form-group row">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
-
-                <input class="form-control" type="text" placeholder="Nombre">
+                <input class="form-control" type="text" placeholder="Nombre" formControlName='nombre'>
+                <div class="form-control-feedback" *ngIf="forma.get('nombreCompleto.nombre').errors?.required">
+                    El nombre es requerido
+                </div>
+                <div class="form-control-feedback" *ngIf="forma.get('nombreCompleto.nombre').errors?.minlength">
+                    Minimo 3 carateres
+                </div>
             </div>
         </div>
-
         <div class="form-group row">
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
-
-                <input class="form-control" type="text" placeholder="Apellido">
+                <input class="form-control" type="text" placeholder="Apellido" formControlName='apellido'>
             </div>
         </div>
-
     </div>
-
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
-
-            <input class="form-control" type="email" placeholder="Correo electrónico">
+            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName='email'>
         </div>
     </div>
-
-
-
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Pasatiempos</label>
+        <div class="col-md-8" formArrayName="pasatiempos">
+            <input *ngFor="let pasatiempo of forma.controls['pasatiempos'].controls; let i = index" type="text" class="form-control" [formControlName]="i">
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addPasatiempo()">Nuevo</button>
+    </div>
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
@@ -40,5 +43,5 @@
       </button>
         </div>
     </div>
-
+    {{forma.valid}}
 </form>
