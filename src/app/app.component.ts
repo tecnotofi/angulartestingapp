@@ -28,18 +28,18 @@ export class AppComponent implements OnInit {
   public testOcultar = false;
   public accessByRegionGrid: any;
 
-  public data: Object[];
+  public data: object[];
   public key: string = null;
-  
+
+  public headerText: object = [{ text: 'Access by region' }, { text: 'Access by zone' }];
+
   public onRowSelected(args: RowSelectEventArgs): void {
     // let record: carType = <carType>args.data;
     this.key = args.data['USER_ID'];
-    
-    this.childGridData = accessByRegionData.filter((data: any) => data.UserId === this.key)
-    this.childGridDataDos = accessByZoneData.filter((data: any) => data.UserId === this.key)
-  }
 
-  public headerText: Object = [{ 'text': 'Access by region' }, { 'text': 'Access by zone' }];
+    this.childGridData = accessByRegionData.filter((data: any) => data.UserId === this.key);
+    this.childGridDataDos = accessByZoneData.filter((data: any) => data.UserId === this.key);
+  }
 
   dataBound() {
     Object.assign((this.grid.filterModule as any).filterOperators, { startsWith: 'contains' });

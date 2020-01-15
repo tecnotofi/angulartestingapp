@@ -1,5 +1,5 @@
-<ejs-grid #grid [dataSource]='parentGridData' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions'
-    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)' (rowSelected)="onRowSelected($event)">
+<ejs-grid #grid [dataSource]='parentGridData' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions' [toolbar]='toolbarOptions'
+    [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)' (rowSelected)="onRowSelected($event)">
     <e-columns>
         <e-column field='USER_ID' headerText='User ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
         <e-column field='USER_NAME' headerText='Name' width=150></e-column>
@@ -12,14 +12,13 @@
         <e-column field='LastModificationBy' headerText='Last Modification By' width=150 editType='dropdownedit'></e-column>
     </e-columns>
 </ejs-grid>
-
-
+<hr>
 <ejs-tab id="element">
     <e-tabitems>
         <e-tabitem [header]='headerText[0]'>
             <ng-template #content>
-                <ejs-grid #childGrid [dataSource]='childGridData' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions'
-                    [toolbar]='toolbarOptions' [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)'>
+                <ejs-grid #childGrid [dataSource]='childGridData' [showColumnChooser]="true" [allowSorting]="true" [allowPaging]="true" [allowResizing]="true" [allowReordering]='true' [allowFiltering]="true" [allowGrouping]="true" [filterSettings]='filterOptions' [toolbar]='toolbarOptions'
+                    [editSettings]='editSettings' (dataBound)='dataBound()' (actionBegin)='actionBegin($event)'>
                 </ejs-grid>
             </ng-template>
         </e-tabitem>
@@ -68,10 +67,10 @@
             <e-tabitem [header]='headerText[0]'>
                 <ng-template #content>
                 <ejs-grid [dataSource]='accessByRegionGrid.dataSource' [queryString]='accessByRegionGrid.queryString' (load)='accessByRegionGrid.load()'> -->
-                        <!-- <e-columns>
+<!-- <e-columns>
                             <e-column field='AccessByRegionId' headerText='Access By Region ID' textAlign='Right' width=120 isPrimaryKey='true' queryString= "UserId"></e-column>
                         </e-columns> -->
-                    <!-- </ejs-grid>
+<!-- </ejs-grid>
                 </ng-template>
             </e-tabitem>
                 <e-tabitem [header]='headerText[1]'></e-tabitem>
@@ -80,17 +79,17 @@
         </ejs-tab>
     </ng-template>
     <e-columns> -->
-        <!-- <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90 isPrimaryKey='true'></e-column>
+<!-- <e-column field='OrderID' headerText='Order ID' textAlign='Right' width=90 isPrimaryKey='true'></e-column>
         <e-column field='CustomerID' headerText='Customer ID' width=120 showInColumnChooser='false' editType= 'dropdownedit' [edit]='ddParams'></e-column>
         <e-column field='Freight' headerText='Freight' textAlign='Right' format='C2' width=90  editType= 'numericedit' [edit]='numericParams' [validationRules]='freightRules'></e-column>
         <e-column field='OrderDate' headerText='Order Date' textAlign='Right' format='yMd' width=120 editType= 'datepickeredit' [edit]='dpParams'></e-column>
         <e-column field='ShipPostalCode' headerText='Ship Postal Code' textAlign='Right' width=120 [visible]='testOcultar'></e-column>
         <e-column field='Verified' headerText='Verified' [displayAsCheckBox]="true" width=150 editType= 'booleanedit' [edit]='boolParams'></e-column> -->
-        <!-- <e-column field='EmployeeID' headerText='Employee ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
+<!-- <e-column field='EmployeeID' headerText='Employee ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
         <e-column field='FirstName' headerText='FirstName' width=150></e-column>
         <e-column field='LastName' headerText='Last Name' width=150></e-column>
         <e-column field='City' headerText='City' width=150 editType='dropdownedit'></e-column> -->
-        <!-- <e-column field='USER_ID' headerText='User ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
+<!-- <e-column field='USER_ID' headerText='User ID' textAlign='Right' width=120 isPrimaryKey='true'></e-column>
         <e-column field='USER_NAME' headerText='Name' width=150></e-column>
         <e-column field='USER_REAL_NAME' headerText='Real Name' width=150></e-column>
         <e-column field='PROF_ID' headerText='Profile ID' width=150 editType='dropdownedit'></e-column>
