@@ -1,9 +1,7 @@
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-3">PeliculasApp</h1>
-        <p class="lead">App to search movies</p>
-    </div>
-</div>
 <div class="container">
-    <app-galery title="Most Populars" [movies]="popularMovies | slice:0:6"></app-galery>
+  <app-galery title="Billboard" [movies]="billboard | slice:0:6"></app-galery>
+
+  <app-galery title="Most Populars" [movies]="popularMovies | slice:0:6"></app-galery>
+
+  <app-galery title="Most Populars for Childs" [movies]="childMovies | slice:0:6"></app-galery>
 </div>
