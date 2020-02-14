@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fir-fotos-24965": {
+      "hosting": {
+        "base": [
+          "fir-fotos-24965"
+        ]
+      }
+    }
+  }
+}
