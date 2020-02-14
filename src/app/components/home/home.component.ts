@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { YoutubeService } from '../../services/youtube.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  videos: any[] = [];
+  videoSeleccionado: any;
+
+  constructor(public youtubeService: YoutubeService) {
+    this.youtubeService.getVideos().subscribe(videos => {
+      console.log(videos);
+      this.videos = videos;
+    });
+  }
 
   ngOnInit() {
   }
 
+  verVideo(video: any) {
+    this.videoSeleccionado = video;
+    console.log('Video seleccionado', video);
+  }
+
+  cerrarModal() {
+    this.videoSeleccionado = null;
+    $('#exampleModal').modal('hide');
+  }
+
+  cargarVideos() {
+    this.youtubeService.getVideos().subscribe(videos => {
+      console.log(videos);
+      this.videos = [...this.videos, ...videos];
+    });
+  }
 }
