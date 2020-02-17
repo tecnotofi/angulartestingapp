@@ -1,0 +1,46 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "nombre": "Sebastian",
+      "apellido": "Eschweiler",
+      "email": "sebastianeschweiler@gmail.com"
+    },
+    {
+      "id": 2,
+      "nombre": "Steve",
+      "apellido": "Palmer",
+      "email": "stevepalmer@gmail.com"
+    },
+    {
+      "id": 3,
+      "nombre": "Ann",
+      "apellido": "Smith",
+      "email": "annsmith@gmail.com"
+    },
+    {
+      "nombre": "tecno",
+      "apellido": "tecnot",
+      "email": "tecno@asd.com",
+      "id": 4
+    },
+    {
+      "nombre": "tecno",
+      "apellido": "tecnot",
+      "email": "tecno@asd.com",
+      "id": 5
+    },
+    {
+      "nombre": "testasd",
+      "apellido": "test",
+      "email": "asd@asd.com",
+      "id": 6
+    },
+    {
+      "nombre": "hola",
+      "apellido": "hola",
+      "email": "hola@ads.com",
+      "id": 7
+    }
+  ]
+}

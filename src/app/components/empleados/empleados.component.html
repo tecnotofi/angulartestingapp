@@ -1,0 +1,132 @@
+<button type="button" class="btn btn-outline-primary" (click)="abrirAgregarEmpleado()" data-toggle="modal" data-target="#modalNuevoEmpleado">Nuevo</button>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let empleado of empleados">
+            <th scope="row">{{empleado.id}}</th>
+            <td>{{empleado.nombre}}</td>
+            <td>{{empleado.apellido}}</td>
+            <td>{{empleado.email}}</td>
+            <td>
+                <button type="button" class="btn btn-outline-primary" (click)="abrirEditarEmpleado(empleado)" data-toggle="modal" data-target="#modalNuevoEmpleado">Editar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="borrarEmpleado(empleado.id)">Borrar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal Nuevo -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalNuevoEmpleado">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" *ngIf="verForm">
+        <div class="modal-header">
+            <h5 class="modal-title">{{tituloForm}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="guardarEmpleado()" novalidate="novalidate">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nombre</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" placeholder="Nombre" formControlName='nombre'>
+                        <div class="form-control-feedback" *ngIf="formulario.get('nombre').errors?.required">
+                            El nombre es requerido
+                        </div>
+                        <div class="form-control-feedback" *ngIf="formulario.get('nombre').errors?.minlength">
+                            Minimo 3 carateres
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Apellido</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" placeholder="Apellido" formControlName='apellido'>
+                        <div class="form-control-feedback" *ngIf="formulario.get('apellido').errors?.required">
+                            El apellido es requerido
+                        </div>
+                        <div class="form-control-feedback" *ngIf="formulario.get('apellido').errors?.minlength">
+                            Minimo 3 carateres
+                        </div>
+                    </div>
+                </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Correo</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="email" placeholder="Correo electrónico" formControlName='email'>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-8">
+                    <button type="submit" class="btn btn-outline-primary">
+                Guardar
+              </button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<!-- Modal Editar -->
+<!-- <div class="modal fade" tabindex="-1" role="dialog" id="modalEditarEmpleado">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" *ngIf="verForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar empleado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="agregarEmpleado()" novalidate="novalidate">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nombre</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" placeholder="Nombre" formControlName='nombre'>
+                        <div class="form-control-feedback" *ngIf="formulario.get('nombre').errors?.required">
+                            El nombre es requerido
+                        </div>
+                        <div class="form-control-feedback" *ngIf="formulario.get('nombre').errors?.minlength">
+                            Minimo 3 carateres
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Apellido</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" placeholder="Apellido" formControlName='apellido'>
+                        <div class="form-control-feedback" *ngIf="formulario.get('apellido').errors?.required">
+                            El apellido es requerido
+                        </div>
+                        <div class="form-control-feedback" *ngIf="formulario.get('apellido').errors?.minlength">
+                            Minimo 3 carateres
+                        </div>
+                    </div>
+                </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Correo</label>
+                <div class="col-md-8">
+                    <input class="form-control" type="email" placeholder="Correo electrónico" formControlName='email'>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-8">
+                    <button type="submit" class="btn btn-outline-primary">
+                Guardar
+              </button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+</div> -->
