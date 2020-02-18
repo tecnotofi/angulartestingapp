@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-virtual',
@@ -15,5 +14,4 @@ export class VirtualComponent implements OnInit {
   ngOnInit() {
     console.log(this.personas);
   }
-
 }
