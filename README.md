@@ -1,4 +1,4 @@
-Many project developed in Angular 8 over the duration of a course done in Udemy.
+Many projects developed in Angular 8 over the duration of a course done in Udemy.
 This repository involves
   - Single page application example
   - Website connected to Spotify APIs to play music
