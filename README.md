@@ -1,4 +1,5 @@
 Many projects developed in Angular 8 over the duration of a course done in Udemy.
+Each brach is a diofferent project.
 This repository involves
   - Single page application example
   - Website connected to Spotify APIs to play music
